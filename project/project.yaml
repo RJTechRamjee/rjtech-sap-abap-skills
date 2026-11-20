@@ -1,0 +1,69 @@
+# Project settings read by the MCP server. Changes reach every developer within a few minutes of merging.
+# The model sees this file as-is (via get_project_conventions), so keep comments meaningful.
+
+project: RJTech SAP
+
+# Guard for the ADT write tools (create/update/activate). Names outside these prefixes are refused.
+# The server never allows anything outside Z*, Y* and $ packages, whatever is configured here.
+adt:
+  objectPrefixes: [ZRJ_]
+  packagePrefixes: [ZRJ_, $]
+
+# Module and submodule codes used in every object name: ZRJ_<MOD>_<SUB>_<TYPE>_<NAME>.
+# Use only codes listed here; add a new code here (pull request) before using it.
+# Codes are 2-3 upper-case letters. Prefer 2-letter modules so names keep room for <NAME>.
+# Based on SAP application components. TODO: remove what the project doesn't use.
+modules:
+  SD:
+    name: Sales and Distribution
+    submodules:
+      SLS: Sales
+      BIL: Billing
+      SHP: Shipping
+      PRC: Pricing
+  MM:
+    name: Materials Management
+    submodules:
+      PUR: Purchasing
+      IM: Inventory Management
+      IV: Invoice Verification
+      MAT: Material Master
+  FI:
+    name: Financial Accounting
+    submodules:
+      GL: General Ledger
+      AP: Accounts Payable
+      AR: Accounts Receivable
+      AA: Asset Accounting
+  CO:
+    name: Controlling
+    submodules:
+      OM: Overhead Cost Controlling
+      PC: Product Costing
+      PA: Profitability Analysis
+  PP:
+    name: Production Planning
+    submodules:
+      MRP: Material Requirements Planning
+      SFC: Shop Floor Control
+  CA:
+    name: Cross-Application
+    submodules:
+      GEN: Shared utilities used by several modules
+      DMO: Demo and training (not for production)
+
+# Applications, their module/submodule and ABAP packages. TODO: replace the example with the real applications.
+# Package hierarchy: ZRJ_<MOD> (structure package) > ZRJ_<MOD>_<SUB> > optional ZRJ_<MOD>_<SUB>_<APP>.
+applications:
+  - name: Travel (example)
+    description: Demo RAP Travel/Booking app used in the skill templates
+    module: CA
+    submodule: DMO
+    packages: [ZRJ_CA_DMO_TRAVEL]
+
+# SAP systems the project develops in. TODO: fill in. Credentials never go here; each developer
+# keeps them in their own %USERPROFILE%\.rjtech-mcp\config.env.
+systems:
+  - id: A4H
+    description: ABAP Platform Trial (Docker), one per developer
+    client: "001"

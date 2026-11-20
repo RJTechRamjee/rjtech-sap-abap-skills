@@ -29,7 +29,7 @@ Rules:
 - The folder name uses lowercase letters, digits and hyphens, and `name` matches it exactly.
 - `description` is what Copilot uses to pick the skill, so say **what** it does and **when** to use it.
 - Keep `SKILL.md` about workflow and rules. Move long code to `references/` and mention the file in `SKILL.md`.
-- Follow `team/conventions.md` (prefix `ZRJ_<TYPE>_`). Point to other skills by name (for example "see the `rap-managed-bo` skill"), and don't rename existing skills.
+- Follow `project/conventions.md` and the naming topics in `project/naming/` (`ZRJ_<MOD>_<SUB>_<TYPE>_<NAME>`; new module or submodule codes go into `modules` in `project/project.yaml` first). Point to other skills by name (for example "see the `rap-managed-bo` skill"), and don't rename existing skills.
 - Target ABAP Cloud: released APIs, RAP `strict ( 2 )`, CDS view entities, OData V4.
 
 ## 2. Test it locally before pushing (optional)
@@ -54,8 +54,13 @@ Push a branch and open a pull request. The **Validate skills** check must pass, 
 someone should review the content. After the merge, everyone has it within about 5 minutes.
 In Copilot, the tool `skills_status` (with `refresh: true`) shows which version is loaded.
 
-## Changing team conventions
+## Changing project conventions
 
-- Rules for the model (naming, how to work): `team/conventions.md`.
-- Allowed prefixes for the ADT write tools, projects, packages, systems: `team/team.yaml`.
-  The validate check rejects an invalid `team.yaml`.
+- Core rules for the model (platform, prefix, packages, how to work): `project/conventions.md`.
+  It goes into every session, so keep it short and put details into a naming topic.
+- Detailed naming rules: `project/naming/<topic>.md`. Each file needs a frontmatter
+  `description` that says what it covers and when to load it; the model sees only that list
+  until it loads a topic. A new file becomes a new topic; mention it in the topic table in
+  `project/conventions.md`.
+- Allowed prefixes for the ADT write tools, applications, packages, systems: `project/project.yaml`.
+  The validate check rejects an invalid `project.yaml`.
