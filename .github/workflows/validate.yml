@@ -1,0 +1,23 @@
+name: Validate skills
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Same parser the MCP server uses (latest server release), so what passes here is what the team gets.
+      - run: curl -fsSL -o mcp-server.mjs https://github.com/RJTechRamjee/rjtech-mcp-sap-abap/releases/latest/download/rjtech-mcp-sap-abap.mjs
+      - run: node mcp-server.mjs validate .
+        env:
+          RJTECH_MCP_AUTO_UPDATE: "false"

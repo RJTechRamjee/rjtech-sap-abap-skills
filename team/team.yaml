@@ -1,0 +1,23 @@
+# Team settings read by the MCP server. Changes reach every developer within a few minutes of merging.
+# The model sees this file as-is (via get_team_conventions), so keep comments meaningful.
+
+team: RJTech SAP team
+
+# Guard for the ADT write tools (create/update/activate). Names outside these prefixes are refused.
+# The server never allows anything outside Z*, Y* and $ packages, whatever is configured here.
+adt:
+  objectPrefixes: [ZRJ_]
+  packagePrefixes: [ZRJ_, $]
+
+# Projects and their ABAP packages. TODO: replace the example with the team's real projects.
+projects:
+  - name: Travel (example)
+    description: Demo RAP Travel/Booking app used in the skill templates
+    packages: [ZRJ_TRAVEL]
+
+# SAP systems the team develops in. TODO: fill in. Credentials never go here; each developer
+# keeps them in their own %USERPROFILE%\.rjtech-mcp\config.env.
+systems:
+  - id: A4H
+    description: ABAP Platform Trial (Docker), one per developer
+    client: "001"
