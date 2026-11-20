@@ -64,3 +64,15 @@ In Copilot, the tool `skills_status` (with `refresh: true`) shows which version 
   `project/conventions.md`.
 - Allowed prefixes for the ADT write tools, applications, packages, systems: `project/project.yaml`.
   The validate check rejects an invalid `project.yaml`.
+
+## Changing or adding an agent
+
+Agents are Copilot custom agents in `agents/<name>.agent.md` (lowercase letters, digits and
+hyphens). The MCP server installs each one on every developer's machine as
+`rjtech-<name>.agent.md`, for VS Code and for Eclipse, within about 5 minutes of a merge.
+
+- Frontmatter: `name` (shown in the agent picker), `description` (required), `tools`.
+  Keep `'sap-abap-skills/*'` in `tools`: that is how the agent reaches the MCP server.
+- Keep the agent short. It describes the role and the workflow; the actual rules belong in
+  `project/` and the skills, so they can be loaded on demand.
+- Deleting a file here removes the agent from every machine.

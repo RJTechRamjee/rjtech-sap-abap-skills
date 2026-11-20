@@ -15,15 +15,22 @@ skills/<skill-name>/SKILL.md          instructions (frontmatter: name, descripti
 skills/<skill-name>/references/*.md   long templates, loaded only when needed
 project/conventions.md                core rules and naming summary, always given to the model
 project/naming/<topic>.md             detailed naming rules, loaded by topic when needed
-project/project.yaml                  prefixes for the ADT guard, applications, packages, systems
+project/project.yaml                  prefixes for the ADT guard, modules, applications, packages, systems
+agents/<name>.agent.md                Copilot custom agents, installed into VS Code and Eclipse by the server
 ```
 
 Naming topics: `global-objects` (classes, DDIC, reports, function modules, IDocs, ...),
 `rap-cds` (CDS views, behaviors, services) and `local-definitions` (variables, types, local
 classes, parameters).
 
-Only text files (`.md .txt .abap .cds .json .yaml .yml .xml`) under `skills/` and `project/` are served.
+Only text files (`.md .txt .abap .cds .json .yaml .yml .xml`) under `skills/`, `project/` and `agents/` are synced.
 Never put passwords, tokens or customer data in this repo: it is public.
+
+## Agents
+
+| Agent | Use it for |
+|---|---|
+| `abap-developer` (**ABAP Developer**) | All ABAP development: always loads the conventions, naming topics and matching skill from the MCP server first |
 
 ## Skills
 
